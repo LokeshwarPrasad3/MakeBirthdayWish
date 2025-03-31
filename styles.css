@@ -1,0 +1,394 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #121212;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Karla', sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+}
+
+h1 {
+    color: #fff;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    text-shadow: 0 0 15px rgba(255, 165, 0, 0.7);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.instruction {
+    color: #fff;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    opacity: 0.8;
+    font-weight: 400;
+}
+
+.candle {
+    position: relative;
+    height: 250px;
+    width: 80px;
+    margin: 0 auto;
+    filter: drop-shadow(0 0 10px rgba(255, 200, 150, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.wax {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(#fff 10%, #f0f0f0 90%);
+    border-radius: 10px 10px 5px 5px;
+    box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.4),
+        inset 0 -10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.wick {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 35px;
+    background: linear-gradient(#23191f, #4a3a43);
+    border-radius: 10px;
+    z-index: 1;
+}
+
+/* Add or update these styles in your CSS file */
+
+.flame-wrapper {
+    position: absolute;
+    top: -80px; /* Increased from -60px for taller flame */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 80px; /* Increased from 60px for taller flame */
+    z-index: 2;
+}
+
+.flame {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #ff7800, #ffeb3b 80%);
+    border-radius: 30% 30% 20% 20%; /* Adjusted for taller flame */
+    box-shadow: 
+        0 0 20px #ff9800, 
+        0 0 40px #ff9800,
+        0 0 60px rgba(255, 152, 0, 0.5);
+    animation: flicker 1s infinite alternate;
+    transform-origin: center bottom;
+}
+
+.inner-flame {
+    position: absolute;
+    width: 60%;
+    height: 85%; /* Increased from 80% */
+    background: linear-gradient(to top, #ffeb3b, #fff);
+    left: 50%;
+    top: 5%; /* Adjusted from 10% */
+    transform: translateX(-50%);
+    border-radius: 30% 30% 20% 20%;
+    animation: innerFlicker 0.8s infinite alternate;
+    opacity: 0.9;
+}
+
+.smoke-container {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px; /* Wider container for smoke */
+    height: 200px; /* Taller container for smoke */
+    opacity: 0;
+    transition: opacity 0.1s ease;
+    z-index: 10;
+}
+
+.extinguished .smoke-container {
+    opacity: 1;
+}
+
+.dynamic-smoke {
+    position: absolute;
+    width: 8px;
+    height: 40px; /* Increased from 20px for taller smoke */
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    filter: blur(5px);
+    animation: smokeRise 3s ease-out forwards;
+    bottom: 0;
+}
+
+@keyframes smokeRise {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.9;
+        height: 20px; /* Increased from 10px */
+        width: 8px;
+    }
+    30% {
+        opacity: 0.8;
+        height: 80px; /* Increased from 40px */
+        width: 6px;
+    }
+    60% {
+        transform: translateY(-150px) scale(1.5); /* Increased from -100px */
+        opacity: 0.6;
+        height: 120px; /* Increased from 60px */
+        width: 4px;
+    }
+    100% {
+        transform: translateY(-300px) scale(2); /* Increased from -200px */
+        opacity: 0;
+        height: 160px; /* Increased from 80px */
+        width: 3px;
+    }
+}
+
+/* Improved extinguishing transition */
+.extinguished .flame,
+.extinguished .inner-flame,
+.extinguished .glow {
+    opacity: 0;
+    transition: all 0.2s ease;
+    height: 0;
+}
+
+.glow {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255, 152, 0, 0.5) 0%, rgba(255, 152, 0, 0) 70%);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    animation: glow 2s infinite alternate;
+}
+
+.drip {
+    position: absolute;
+    width: 15px;
+    height: 25px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px 10px 5px 5px;
+    z-index: 0;
+}
+
+.drip1 {
+    right: -5px;
+    top: 50px;
+    height: 40px;
+    transform: rotate(5deg);
+}
+
+.drip2 {
+    left: -3px;
+    top: 100px;
+    height: 30px;
+    transform: rotate(-7deg);
+}
+
+.smoke-container {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 100px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.extinguished .smoke-container {
+    opacity: 1;
+}
+
+.smoke {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    filter: blur(5px);
+    opacity: 0;
+}
+
+.extinguished .smoke {
+    animation: smokeRise 3s ease-out forwards;
+}
+
+.smoke1 {
+    left: 50%;
+    animation-delay: 0s;
+}
+
+.smoke2 {
+    left: 40%;
+    animation-delay: 0.4s;
+}
+
+.smoke3 {
+    left: 60%;
+    animation-delay: 0.8s;
+}
+
+.sensitivity-control {
+    margin-top: 2rem;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.sensitivity-control label {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.sensitivity-control input {
+    width: 200px;
+    cursor: pointer;
+    accent-color: #ff9800;
+}
+
+@keyframes flicker {
+    0% {
+        transform: scaleY(1) rotate(-2deg);
+        opacity: 0.9;
+    }
+    25% {
+        transform: scaleY(1.2) rotate(2deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scaleY(0.95) rotate(-1deg);
+        opacity: 0.95;
+    }
+    75% {
+        transform: scaleY(1.1) rotate(3deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scaleY(1) rotate(-1deg);
+        opacity: 0.9;
+    }
+}
+
+@keyframes innerFlicker {
+    0% {
+        transform: translateX(-50%) scaleY(1) rotate(-1deg);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateX(-50%) scaleY(1.2) rotate(1deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) scaleY(0.9) rotate(-1deg);
+        opacity: 0.9;
+    }
+}
+
+@keyframes glow {
+    0% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+@keyframes smokeRise {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(-50px) scale(2);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-100px) scale(3);
+        opacity: 0;
+    }
+}
+
+.extinguished .flame,
+.extinguished .inner-flame,
+.extinguished .glow {
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.candle.wind-effect {
+    animation: candleWind 0.5s ease-in-out;
+}
+
+@keyframes candleWind {
+    0% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        transform: rotate(5deg);
+    }
+    75% {
+        transform: rotate(-3deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
+
+.selector-container {
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.selector-container p {
+    margin-bottom: 10px;
+    font-family: 'Karla', sans-serif;
+}
+
+.device-selector {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 2px solid #ff9800;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-family: 'Karla', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.device-selector:hover {
+    background: rgba(255, 152, 0, 0.1);
+}
+
+.device-selector option {
+    background: #1a1a1a;
+    color: #fff;
+}
