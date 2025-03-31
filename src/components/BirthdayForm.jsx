@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useBirthday } from '../context/birthday/BirthdayContext';
 
 const BirthdayForm = () => {
   const FrontendURL = import.meta.env.VITE_FRONTEND_URL;
+  const { handleSetBirthdayBoyDetails } = useBirthday();
   const [formData, setFormData] = useState({
     name: '',
     photo: null,
@@ -11,6 +13,13 @@ const BirthdayForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
+    // set user details
+    handleSetBirthdayBoyDetails({
+      name: formData.name,
+      profilePicture: formData.photo,
+      birthdayDate: formData.birthDate,
+    });
     const shortName = formData.name.toLowerCase().replace(/\s+/g, '-');
     setGeneratedLink(`${FrontendURL}/${shortName}`);
   };
@@ -26,7 +35,9 @@ const BirthdayForm = () => {
               type="text"
               id="name"
               value={formData.name}
-              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
               placeholder="Enter name"
               required
             />
@@ -38,7 +49,9 @@ const BirthdayForm = () => {
               type="file"
               id="photo"
               accept="image/*"
-              onChange={(e) => setFormData({...formData, photo: e.target.files[0]})}
+              onChange={(e) =>
+                setFormData({ ...formData, photo: URL.createObjectURL(e.target.files[0]) })
+              }
               required
             />
           </div>
@@ -49,7 +62,9 @@ const BirthdayForm = () => {
               type="date"
               id="birthDate"
               value={formData.birthDate}
-              onChange={(e) => setFormData({...formData, birthDate: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, birthDate: e.target.value })
+              }
               required
             />
           </div>

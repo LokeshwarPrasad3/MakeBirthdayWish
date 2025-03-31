@@ -1,15 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import confetti from "canvas-confetti";
+import { useBirthday } from "../context/birthday/BirthdayContext";
 
-const names = [
-  "Lokeshwar Dewangan"
-];
-
-const imageUrls = [
-  "https://i.ibb.co/zwtdD5C/photo-2025-03-31-16-55-17.jpg"
-];
-
-const getRandomItem = (array) => array[Math.floor(Math.random() * array.length)];
 
 const triggerConfetti = () => {
   const defaults = {
@@ -30,12 +22,10 @@ const triggerConfetti = () => {
 };
 
 const BirthdayCelebration = () => {
-  const [name, setName] = useState("");
-  const [image, setImage] = useState("");
+
+  const {name, profilePicture, birthDate} = useBirthday();
 
   useEffect(() => {
-    setName(getRandomItem(names));
-    setImage(getRandomItem(imageUrls));
     triggerConfetti();
   }, []);
 
@@ -43,7 +33,7 @@ const BirthdayCelebration = () => {
     <div className="content">
       <div className="profile-section">
         <div className="profile-image">
-          <img src={image} alt="Birthday Person" />
+          <img src={profilePicture} alt="Birthday Person" />
         </div>
         <h1 className="birthday-text">Happy Birthday!</h1>
         <h2 className="name-text">{name}</h2>
