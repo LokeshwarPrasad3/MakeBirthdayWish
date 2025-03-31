@@ -1,40 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Candle</title>
-    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="birthday.css">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-</head>
-<body>
-    <div class="container">
-        <h1>Blow to Extinguish the Candle</h1>
-        <div class="candle">
-            <div class="flame-wrapper">
-                <div class="flame">
-                    <div class="inner-flame"></div>
-                    <div class="glow"></div>
-                </div>
-                <div class="smoke-container">
-                    <div class="smoke smoke1"></div>
-                    <div class="smoke smoke2"></div>
-                    <div class="smoke smoke3"></div>
-                </div>
-            </div>
-            <div class="wick"></div>
-            <div class="wax"></div>
-            <div class="drip drip1"></div>
-            <div class="drip drip2"></div>
-        </div>
-        <p class="instruction">🎤 Allow microphone access and blow to interact</p>
-        <div class="sensitivity-control">
-            <label for="sensitivity">Microphone Sensitivity:</label>
-            <input type="range" id="sensitivity" min="0.05" max="0.3" step="0.01" value="0.1">
-        </div>
-    </div>
-    <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet" />
+    <title>Happy Birthday Celebration 🎉</title>
+    <meta
+      name="description"
+      content="Celebrate birthdays with an interactive candle and confetti animation! 🎂✨" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
