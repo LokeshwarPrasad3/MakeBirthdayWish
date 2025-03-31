@@ -14,6 +14,7 @@ const BirthdayContextProvider = ({ children }) => {
     profilePicture,
     birthdayDate,
   }) => {
+    console.log("photos gone come", profilePicture)
     setName(name);
     setEmail(email);
     setProfilePicture(profilePicture);

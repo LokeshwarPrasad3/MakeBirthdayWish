@@ -12,6 +12,7 @@
     border: 4px solid transparent; /* Ensures space for the border */
     background-clip: padding-box; /* Keeps background inside the border */
     width: 95%;
+    max-width: 450px;
     margin: auto;
 }
 
