@@ -5,7 +5,7 @@ import './styles/birthday.css';
 import './styles/birthdayForm.css';
 import CandleInteraction from './components/CandleInteraction';
 import BirthdayCelebration from './components/BirthdayCelebration';
-import BirthdayForm from './components/BirthdayForm';
+import MakeBirthdayWishForm from './components/MakeBirthdayWishForm';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<BirthdayForm />} />
+          <Route path="/" element={<MakeBirthdayWishForm />} />
           <Route path="/*" element={<CandleInteraction />} />
           <Route path="/birthday" element={<BirthdayCelebration />} />
         </Routes>

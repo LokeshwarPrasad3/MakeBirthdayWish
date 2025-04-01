@@ -159,3 +159,35 @@ input[type="file"] {
     padding: 0.7rem;
   }
 }
+.form-error-text{
+  color: rgb(235, 72, 97);
+  font-size: 14px;
+}
+
+
+.profile-image-container {
+  position: absolute;
+  top: -127px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 150px; 
+  border-radius: 50%; 
+  overflow: hidden;
+  border: 2px solid rgb(235, 73, 97);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 768px) {
+  .profile-image-container {
+    top: -80px;
+    width: 100px;
+    height: 100px; 
+  }
+}
+
+.profile-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
