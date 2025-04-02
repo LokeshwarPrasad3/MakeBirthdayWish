@@ -14,7 +14,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<MakeBirthdayWishForm />} />
-          <Route path="/*" element={<CandleInteraction />} />
+          <Route path="/:birthdayId" element={<CandleInteraction />} />
           <Route path="/birthday" element={<BirthdayCelebration />} />
         </Routes>
       </Router>

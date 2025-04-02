@@ -23,7 +23,9 @@ export const makeBirthdayWish = asyncHandler(async (req, res) => {
   }
   // Return response
   console.log(createUser);
-  return res.status(201).json(new ApiResponse(201, {birthdayId: createUser.birthdayId}, 'User created successfully'));
+  return res
+    .status(201)
+    .json(new ApiResponse(201, { birthdayId: createUser.birthdayId }, 'User created successfully'));
 });
 
 export const getAllUsers = asyncHandler(async (req, res) => {

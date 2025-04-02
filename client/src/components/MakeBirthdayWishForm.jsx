@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useBirthday } from '../context/birthday/BirthdayContext';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { useFormik } from 'formik';
@@ -11,14 +10,13 @@ const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
 const MakeBirthdayWishForm = () => {
   const FrontendURL = `${window.location.origin}${location.pathname}${location.search}`;
-  const { handleSetBirthdayBoyDetails } = useBirthday();
   const [photoId, setPhotoId] = useState('');
   const [generatedLink, setGeneratedLink] = useState('');
 
   const { mutate: MakeBirthdayWishMutate, isPending } = useMutation({
     mutationFn: makeBirthdayWish,
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       const generatedBirthdayId = data.data.data.birthdayId;
       setGeneratedLink(generatedBirthdayId);
       toast.success('Birthday saved successfully!');
@@ -91,12 +89,7 @@ const MakeBirthdayWishForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // handleSetBirthdayBoyDetails({
-      //   name: values.name,
-      //   profilePicture: values.photoId,
-      //   birthdayDate: values.birthDate,
-      // });
-      console.log(values);
+      // console.log(values);
       MakeBirthdayWishMutate({
         name: values.name,
         avatar: values.photoId,
@@ -158,7 +151,7 @@ const MakeBirthdayWishForm = () => {
           </button>
 
           {photoId && (
-            <div class="profile-image-container">
+            <div className="profile-image-container">
               <img src={photoId} alt="Profile" />
             </div>
           )}

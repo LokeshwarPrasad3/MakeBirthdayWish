@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { showBirthdayWish } from '../services/user.services';
+import { useBirthday } from '../context/birthday/BirthdayContext';
 
 const CandleInteraction = () => {
   const [isBlown, setIsBlown] = useState(false);
-  // eslint-disable-next-line 
+  // eslint-disable-next-line
   const [blowThreshold, setBlowThreshold] = useState(0.1);
   const audioContextRef = useRef(null);
   const analyzerRef = useRef(null);
@@ -12,6 +15,8 @@ const CandleInteraction = () => {
   const streamRef = useRef(null);
   const candleRef = useRef(null);
   const navigate = useNavigate();
+
+  const { handleSetBirthdayBoyDetails } = useBirthday();
 
   useEffect(() => {
     initAudio();
@@ -29,17 +34,21 @@ const CandleInteraction = () => {
       });
 
       streamRef.current = stream;
-      audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
-      sourceRef.current = audioContextRef.current.createMediaStreamSource(stream);
+      audioContextRef.current = new (window.AudioContext ||
+        window.webkitAudioContext)();
+      sourceRef.current =
+        audioContextRef.current.createMediaStreamSource(stream);
       analyzerRef.current = audioContextRef.current.createAnalyser();
       sourceRef.current.connect(analyzerRef.current);
       analyzerRef.current.fftSize = 2048;
       analyzerRef.current.smoothingTimeConstant = 0.8;
 
-      dataArrayRef.current = new Uint8Array(analyzerRef.current.frequencyBinCount);
+      dataArrayRef.current = new Uint8Array(
+        analyzerRef.current.frequencyBinCount
+      );
       checkAudioLevel();
     } catch (err) {
-      console.error("Microphone access denied:", err);
+      console.error('Microphone access denied:', err);
     }
   };
 
@@ -47,14 +56,16 @@ const CandleInteraction = () => {
     if (!analyzerRef.current || !dataArrayRef.current) return;
 
     analyzerRef.current.getByteFrequencyData(dataArrayRef.current);
-    const average = dataArrayRef.current.reduce((a, b) => a + b) / dataArrayRef.current.length;
+    const average =
+      dataArrayRef.current.reduce((a, b) => a + b) /
+      dataArrayRef.current.length;
     const normalizedValue = average / 256;
 
     if (normalizedValue > blowThreshold * 0.8 && !isBlown) {
-      candleRef.current.classList.add("wind-effect");
+      candleRef.current.classList.add('wind-effect');
       setTimeout(() => {
         extinguishCandle();
-        candleRef.current.classList.remove("wind-effect");
+        candleRef.current.classList.remove('wind-effect');
       }, 300);
     }
 
@@ -63,31 +74,50 @@ const CandleInteraction = () => {
 
   const extinguishCandle = () => {
     setIsBlown(true);
-    candleRef.current.classList.add("extinguished");
+    candleRef.current.classList.add('extinguished');
     setTimeout(() => {
-      navigate("/birthday");
+      navigate('/birthday');
     }, 3000);
   };
 
-const ambientMovement = () => {
-  const intervalId = setInterval(() => {
-    if (!isBlown) {
-      const flame = document.querySelector(".flame");
-      const innerFlame = document.querySelector(".inner-flame");
-      
-      if (flame && innerFlame) {
-        const randomX = (Math.random() - 0.5) * 2;
-        const randomScale = 0.95 + Math.random() * 0.1;
-        
-        flame.style.transform = `rotate(${randomX}deg) scaleY(${randomScale})`;
-        innerFlame.style.transform = `translateX(10%) rotate(${-randomX}deg) scaleY(${randomScale + 0.05})`;
-      }
-    }
-  }, 100);
+  const ambientMovement = () => {
+    const intervalId = setInterval(() => {
+      if (!isBlown) {
+        const flame = document.querySelector('.flame');
+        const innerFlame = document.querySelector('.inner-flame');
 
-  // Cleanup interval on component unmount
-  return () => clearInterval(intervalId);
-};
+        if (flame && innerFlame) {
+          const randomX = (Math.random() - 0.5) * 2;
+          const randomScale = 0.95 + Math.random() * 0.1;
+
+          flame.style.transform = `rotate(${randomX}deg) scaleY(${randomScale})`;
+          innerFlame.style.transform = `translateX(10%) rotate(${-randomX}deg) scaleY(${randomScale + 0.05})`;
+        }
+      }
+    }, 100);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
+  };
+
+  const { birthdayId } = useParams();
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['birthdayId', birthdayId],
+    queryFn: () => showBirthdayWish(birthdayId),
+    enabled: !!birthdayId, // query runs only when birthdayId is available
+  });
+
+  useEffect(() => {
+    if (!data?.data?.success) return;
+    const birthdayData = data.data.data;
+    const { avatar, name, dob } = birthdayData;
+    handleSetBirthdayBoyDetails({
+      name,
+      profilePicture: avatar,
+      birthdayDate: dob,
+    });
+  }, [data]);
 
   return (
     <div className="container">
@@ -109,7 +139,9 @@ const ambientMovement = () => {
         <div className="drip drip1"></div>
         <div className="drip drip2"></div>
       </div>
-      <p className="instruction">🎤 Allow microphone access and blow to interact</p>
+      <p className="instruction">
+        🎤 Allow microphone access and blow to interact
+      </p>
       {/* <div className="sensitivity-control">
         <label htmlFor="sensitivity">Microphone Sensitivity:</label>
         <input

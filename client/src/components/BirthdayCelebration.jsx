@@ -1,7 +1,6 @@
-import { useEffect } from "react";
-import confetti from "canvas-confetti";
-import { useBirthday } from "../context/birthday/BirthdayContext";
-
+import { useEffect } from 'react';
+import confetti from 'canvas-confetti';
+import { useBirthday } from '../context/birthday/BirthdayContext';
 
 const triggerConfetti = () => {
   const defaults = {
@@ -11,19 +10,24 @@ const triggerConfetti = () => {
     zIndex: 0,
     particleCount: 30,
     scalar: 1.2,
-    shapes: ["star", "circle", "square"],
-    colors: ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"]
+    shapes: ['star', 'circle', 'square'],
+    colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'],
   };
 
   setInterval(() => {
-    confetti({ ...defaults, origin: { x: Math.random() * 0.4 + 0.1, y: Math.random() - 0.2 } });
-    confetti({ ...defaults, origin: { x: Math.random() * 0.4 + 0.5, y: Math.random() - 0.2 } });
+    confetti({
+      ...defaults,
+      origin: { x: Math.random() * 0.4 + 0.1, y: Math.random() - 0.2 },
+    });
+    confetti({
+      ...defaults,
+      origin: { x: Math.random() * 0.4 + 0.5, y: Math.random() - 0.2 },
+    });
   }, 300);
 };
 
 const BirthdayCelebration = () => {
-
-  const {name, profilePicture, birthDate} = useBirthday();
+  const { name, profilePicture, birthDate } = useBirthday();
 
   useEffect(() => {
     triggerConfetti();
@@ -39,7 +43,10 @@ const BirthdayCelebration = () => {
         <h2 className="name-text">{name}</h2>
       </div>
       <div className="message-section">
-        <p className="wish-text">Wishing you a day filled with joy and laughter!</p>
+        <p className="wish-text">
+          May this year bring you endless joy and everything your heart desires.
+          🎉🥳🎂✨
+        </p>
       </div>
     </div>
   );
