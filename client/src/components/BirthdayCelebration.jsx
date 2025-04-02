@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { useBirthday } from '../context/birthday/BirthdayContext';
+import { getMonthName } from '../utils/utilities';
 
 const triggerConfetti = () => {
   const defaults = {
@@ -27,7 +28,7 @@ const triggerConfetti = () => {
 };
 
 const BirthdayCelebration = () => {
-  const { name, profilePicture, message, birthDate } = useBirthday();
+  const { name, profilePicture, message, birthdayDate } = useBirthday();
 
   useEffect(() => {
     triggerConfetti();
@@ -39,14 +40,17 @@ const BirthdayCelebration = () => {
         <div className="profile-image">
           <img src={profilePicture} alt="Birthday Person" />
         </div>
-        <div className="birthday-date">10 March <span className="heart" >❤</span> </div>
+        <div className="birthday-date">
+          {birthdayDate.split('-')[2]}{' '}
+          {getMonthName(Number(birthdayDate.split('-')[1]))}{' '}
+          <span className="heart">❤</span>
+        </div>
+
         <h1 className="birthday-text">Happy Birthday!</h1>
         <h2 className="name-text">{name}</h2>
       </div>
       <div className="message-section">
-        <p className="wish-text">
-          {message}
-        </p>
+        <p className="wish-text">{message}</p>
       </div>
     </div>
   );

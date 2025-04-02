@@ -87,7 +87,8 @@ const MakeBirthdayWishForm = () => {
       name: '',
       birthDate: '',
       photoId: '',
-      message: 'May this year bring you endless joy and everything your heart desires.🎉🥳🎂✨',
+      message:
+        'May this year bring you endless joy and everything your heart desires.🎉🥳🎂✨',
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -102,86 +103,88 @@ const MakeBirthdayWishForm = () => {
   });
 
   return (
-    <div className="birthday-form-container">
-      <div className="birthday-form-wrapper">
-        <h2>Create Birthday Celebration</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Birthday Star's Name</label>
-            <input
-              type="text"
-              id="name"
-              value={values.name}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder="Enter name"
-            />
-            {errors.name && touched.name && (
-              <span className="form-error-text">{errors.name}</span>
+    <div className="birthday-form-contents-container">
+      <div className="birthday-form-container">
+        <div className="birthday-form-wrapper">
+          <h2>Create Birthday Celebration</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Birthday Star's Name</label>
+              <input
+                type="text"
+                id="name"
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder="Enter name"
+              />
+              {errors.name && touched.name && (
+                <span className="form-error-text">{errors.name}</span>
+              )}
+            </div>
+
+            <div className="form-group">
+              <label>Message</label>
+              <textarea
+                id="message"
+                value={values.message}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder="Enter your message"
+              ></textarea>
+              {errors.message && touched.message && (
+                <span className="form-error-text">{errors.message}</span>
+              )}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="photo">Upload Photo</label>
+              <input
+                type="file"
+                id="photo"
+                accept="image/*"
+                onChange={(e) => handleFileChange(e)}
+              />
+              {errors.photoId && touched.photoId && (
+                <span className="form-error-text">{errors.photoId}</span>
+              )}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="birthDate">Birth Date</label>
+              <input
+                type="date"
+                id="birthDate"
+                value={values.birthDate}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.birthDate && touched.birthDate && (
+                <span className="form-error-text">{errors.birthDate}</span>
+              )}
+            </div>
+
+            <button type="submit" className="submit-btn">
+              {isPending ? 'Generating...' : 'Generate Birthday Page'}
+            </button>
+
+            {photoId && (
+              <div className="profile-image-container">
+                <img src={photoId} alt="Profile" />
+              </div>
             )}
-          </div>
+          </form>
 
-          <div className="form-group">
-            <label>Message</label>
-            <textarea
-            id="message"
-              value={values.message}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder="Enter your message"
-            ></textarea>
-            {errors.message && touched.message && (
-              <span className="form-error-text">{errors.message}</span>
-            )}
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="photo">Upload Photo</label>
-            <input
-              type="file"
-              id="photo"
-              accept="image/*"
-              onChange={(e) => handleFileChange(e)}
-            />
-            {errors.photoId && touched.photoId && (
-              <span className="form-error-text">{errors.photoId}</span>
-            )}
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="birthDate">Birth Date</label>
-            <input
-              type="date"
-              id="birthDate"
-              value={values.birthDate}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {errors.birthDate && touched.birthDate && (
-              <span className="form-error-text">{errors.birthDate}</span>
-            )}
-          </div>
-
-          <button type="submit" className="submit-btn">
-            {isPending ? 'Generating...' : 'Generate Birthday Page'}
-          </button>
-
-          {photoId && (
-            <div className="profile-image-container">
-              <img src={photoId} alt="Profile" />
+          {generatedLink && (
+            <div className="generated-link">
+              <p>Your celebration page is ready at:</p>
+              <Link to={`/${generatedLink}`} rel="noopener noreferrer">
+                {FrontendURL}
+                {generatedLink}
+              </Link>
             </div>
           )}
-        </form>
-
-        {generatedLink && (
-          <div className="generated-link">
-            <p>Your celebration page is ready at:</p>
-            <Link to={`/${generatedLink}`} rel="noopener noreferrer">
-              {FrontendURL}
-              {generatedLink}
-            </Link>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );

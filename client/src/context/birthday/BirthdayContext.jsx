@@ -16,7 +16,7 @@ const BirthdayContextProvider = ({ children }) => {
     message,
     birthdayDate,
   }) => {
-    console.log("messages", message)
+    // console.log("messages", message)
     setName(name);
     setEmail(email);
     setMessage(message);
