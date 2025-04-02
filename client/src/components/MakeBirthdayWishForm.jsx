@@ -70,6 +70,7 @@ const MakeBirthdayWishForm = () => {
     name: Yup.string().required('Name is required'),
     photoId: Yup.string().required('Photo ID is required'),
     birthDate: Yup.date().required('Birthdate is required').nullable(),
+    message: Yup.string().required('Message is required'),
   });
 
   // Formik setup
@@ -86,6 +87,7 @@ const MakeBirthdayWishForm = () => {
       name: '',
       birthDate: '',
       photoId: '',
+      message: 'May this year bring you endless joy and everything your heart desires.🎉🥳🎂✨',
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -94,8 +96,8 @@ const MakeBirthdayWishForm = () => {
         name: values.name,
         avatar: values.photoId,
         dob: values.birthDate,
+        message: values.message,
       });
-
     },
   });
 
@@ -116,6 +118,20 @@ const MakeBirthdayWishForm = () => {
             />
             {errors.name && touched.name && (
               <span className="form-error-text">{errors.name}</span>
+            )}
+          </div>
+
+          <div className="form-group">
+            <label>Message</label>
+            <textarea
+            id="message"
+              value={values.message}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder="Enter your message"
+            ></textarea>
+            {errors.message && touched.message && (
+              <span className="form-error-text">{errors.message}</span>
             )}
           </div>
 

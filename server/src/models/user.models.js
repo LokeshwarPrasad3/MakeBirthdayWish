@@ -14,6 +14,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    message: {
+      type: String,
+      required: true,
+    },
     dob: {
       type: String,
       required: true,

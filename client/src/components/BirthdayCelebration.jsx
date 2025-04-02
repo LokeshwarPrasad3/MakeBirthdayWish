@@ -27,7 +27,7 @@ const triggerConfetti = () => {
 };
 
 const BirthdayCelebration = () => {
-  const { name, profilePicture, birthDate } = useBirthday();
+  const { name, profilePicture, message, birthDate } = useBirthday();
 
   useEffect(() => {
     triggerConfetti();
@@ -39,13 +39,13 @@ const BirthdayCelebration = () => {
         <div className="profile-image">
           <img src={profilePicture} alt="Birthday Person" />
         </div>
+        <div className="birthday-date">10 March <span className="heart" >❤</span> </div>
         <h1 className="birthday-text">Happy Birthday!</h1>
         <h2 className="name-text">{name}</h2>
       </div>
       <div className="message-section">
         <p className="wish-text">
-          May this year bring you endless joy and everything your heart desires.
-          🎉🥳🎂✨
+          {message}
         </p>
       </div>
     </div>

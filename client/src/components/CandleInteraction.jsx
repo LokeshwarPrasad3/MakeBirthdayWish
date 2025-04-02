@@ -111,11 +111,12 @@ const CandleInteraction = () => {
   useEffect(() => {
     if (!data?.data?.success) return;
     const birthdayData = data.data.data;
-    const { avatar, name, dob } = birthdayData;
+    const { avatar, name, dob, message } = birthdayData;
     handleSetBirthdayBoyDetails({
       name,
       profilePicture: avatar,
       birthdayDate: dob,
+      message
     });
   }, [data]);
 

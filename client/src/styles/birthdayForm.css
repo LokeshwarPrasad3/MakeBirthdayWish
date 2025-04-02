@@ -98,6 +98,27 @@ input:focus {
   background: rgba(255, 255, 255, 0.3);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
+textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+
+}
+
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+textarea:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
 
 input[type="file"] {
   padding: 0.5rem;

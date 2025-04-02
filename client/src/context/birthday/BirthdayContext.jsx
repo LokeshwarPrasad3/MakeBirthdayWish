@@ -6,17 +6,20 @@ const BirthdayContextProvider = ({ children }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
+  const [message, setMessage] = useState('');
   const [birthdayDate, setBirthdayDate] = useState('');
 
   const handleSetBirthdayBoyDetails = ({
     name,
     email,
     profilePicture,
+    message,
     birthdayDate,
   }) => {
-    console.log("photos gone come", profilePicture)
+    console.log("messages", message)
     setName(name);
     setEmail(email);
+    setMessage(message);
     setProfilePicture(profilePicture);
     setBirthdayDate(birthdayDate);
   };
@@ -28,6 +31,7 @@ const BirthdayContextProvider = ({ children }) => {
         email,
         profilePicture,
         birthdayDate,
+        message,
         handleSetBirthdayBoyDetails,
       }}
     >
