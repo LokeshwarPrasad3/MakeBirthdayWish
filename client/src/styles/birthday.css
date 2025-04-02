@@ -1,4 +1,11 @@
-.content {
+
+.birthday-content-container{
+    height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.birthday-content {
     position: relative;
     z-index: 2;
     text-align: center;
@@ -17,18 +24,18 @@
 }
 
 @media (max-width: 600px){
-    .content {
+    .birthday-content {
         padding: 2rem;
     }
 }
 
 /* Gradient Border Effect */
-.content::before {
+.birthday-content::before {
     content: "";
     position: absolute;
     inset: 0;
     padding: 1px; /* Border thickness */
-    border-radius: 20px; /* Same as .content */
+    border-radius: 20px; /* Same as .birthday-content */
     background: linear-gradient(45deg, #0235ff70, #01c4ff70, #0235ff70, #01c4ff70);
     -webkit-mask: 
     linear-gradient(white 0 0) content-box, 

@@ -6,4 +6,7 @@ export const makeBirthdayWish = (userData) =>
 export const showBirthdayWish = (birthdayId) =>
   API.get(`/users/${birthdayId}`);
 
+export const getAllBirthdayWishes = () =>
+  API.get('/users/get-all-birthday');
+
 

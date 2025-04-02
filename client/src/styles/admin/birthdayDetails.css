@@ -1,0 +1,92 @@
+/* Container styles */
+.birthday-container {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .birthday-heading {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    text-shadow: 0 0 10px rgba(255, 165, 0, 0.8);
+  }
+  
+  /* Cards wrapper */
+  .cards-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  /* Card styles */
+  .birthday-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 15px;
+    text-align: center;
+    width:300px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .birthday-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
+  }
+  
+  /* Avatar */
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    margin-bottom: 10px;
+  }
+  
+  /* Name */
+  .name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  /* ID */
+  .birthday-id {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 5px;
+  }
+  
+  /* Message */
+  .message {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  
+  /* Date styles */
+  .dob,
+  .created-at {
+    font-size: 14px;
+    color: #ddd;
+    margin-bottom: 5px;
+  }
+  
+  .dob span,
+  .created-at span {
+    font-weight: bold;
+    color: #ffcc70;
+  }
+  
+  .show_some_text{
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+  }

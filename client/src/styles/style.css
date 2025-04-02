@@ -1,7 +1,12 @@
-.container {
+.candle-container {
     text-align: center;
     padding: 2rem;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
 }
 
 h1 {
@@ -28,6 +33,7 @@ h1 {
     margin: 0 auto;
     filter: drop-shadow(0 0 10px rgba(255, 200, 150, 0.3));
     transition: transform 0.3s ease;
+    margin-top: 10rem;
 }
 
 .wax {

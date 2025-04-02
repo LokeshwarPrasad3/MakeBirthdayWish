@@ -35,22 +35,24 @@ const BirthdayCelebration = () => {
   }, []);
 
   return (
-    <div className="content">
-      <div className="profile-section">
-        <div className="profile-image">
-          <img src={profilePicture} alt="Birthday Person" />
-        </div>
-        <div className="birthday-date">
-          {birthdayDate.split('-')[2]}{' '}
-          {getMonthName(Number(birthdayDate.split('-')[1]))}{' '}
-          <span className="heart">❤</span>
-        </div>
+    <div className="birthday-content-container">
+      <div className="birthday-content">
+        <div className="profile-section">
+          <div className="profile-image">
+            <img src={profilePicture} alt="Birthday Person" />
+          </div>
+          <div className="birthday-date">
+            {birthdayDate.split('-')[2]}{' '}
+            {getMonthName(Number(birthdayDate.split('-')[1]))}{' '}
+            <span className="heart">❤</span>
+          </div>
 
-        <h1 className="birthday-text">Happy Birthday!</h1>
-        <h2 className="name-text">{name}</h2>
-      </div>
-      <div className="message-section">
-        <p className="wish-text">{message}</p>
+          <h1 className="birthday-text">Happy Birthday!</h1>
+          <h2 className="name-text">{name}</h2>
+        </div>
+        <div className="message-section">
+          <p className="wish-text">{message}</p>
+        </div>
       </div>
     </div>
   );

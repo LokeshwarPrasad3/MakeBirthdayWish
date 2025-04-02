@@ -116,12 +116,12 @@ const CandleInteraction = () => {
       name,
       profilePicture: avatar,
       birthdayDate: dob,
-      message
+      message,
     });
   }, [data]);
 
   return (
-    <div className="container">
+    <div className="candle-container">
       {/* <h1>Blow to Extinguish the Candle</h1> */}
       <div className="candle" ref={candleRef}>
         <div className="flame-wrapper">
