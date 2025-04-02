@@ -5,6 +5,7 @@ import './styles/birthday.css';
 import './styles/birthdayForm.css';
 import './styles/admin/birthdayDetails.css';
 import './styles/admin/crazyLoader.css';
+import './styles/admin/shareModal.css';
 import CandleInteraction from './components/CandleInteraction';
 import BirthdayCelebration from './components/BirthdayCelebration';
 import MakeBirthdayWishForm from './components/MakeBirthdayWishForm';

@@ -60,6 +60,7 @@ input {
 
 .generated-link {
   background: rgba(255, 255, 255, 0.1);
+  position: relative;
 }
 
 .generated-link a {
@@ -218,3 +219,38 @@ input[type="file"] {
   object-fit: cover;
 }
 
+.copy-btn {
+  padding: 6px;
+  padding-bottom: 3px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.2s ease-in-out;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.copy-btn:hover {
+  background: #f0f0f030;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  color: white;
+}
+
+.copied-icon {
+  color: white;
+}
+.container_button_generated{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.container_button_generated a{
+  text-align: center;
+}

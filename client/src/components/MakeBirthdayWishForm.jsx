@@ -5,6 +5,8 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useMutation } from '@tanstack/react-query';
 import { makeBirthdayWish } from '../services/user.services';
+import { Copy, Check } from 'lucide-react';
+import ShareModal from './Admin/ShareModal';
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
@@ -12,6 +14,8 @@ const MakeBirthdayWishForm = () => {
   const FrontendURL = `${window.location.origin}${location.pathname}${location.search}`;
   const [photoId, setPhotoId] = useState('');
   const [generatedLink, setGeneratedLink] = useState('');
+  const [copied, setCopied] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { mutate: MakeBirthdayWishMutate, isPending } = useMutation({
     mutationFn: makeBirthdayWish,
@@ -102,6 +106,16 @@ const MakeBirthdayWishForm = () => {
     },
   });
 
+  const handleCopy = () => {
+    const fullLink = `${FrontendURL}${generatedLink}`;
+    navigator.clipboard.writeText(fullLink);
+    setCopied(true);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  };
+
   return (
     <div className="birthday-form-contents-container">
       <div className="birthday-form-container">
@@ -164,9 +178,22 @@ const MakeBirthdayWishForm = () => {
               )}
             </div>
 
-            <button type="submit" className="submit-btn">
-              {isPending ? 'Generating...' : 'Generate Birthday Page'}
-            </button>
+            {!generatedLink ? (
+              <button type="submit" className="submit-btn">
+                {isPending ? 'Generating...' : 'Generate Birthday Page'}
+              </button>
+            ) : (
+              <div className="container_button_generated">
+                <a href="" className="submit-btn">
+                  Refresh
+                </a>
+                <ShareModal
+                  isOpen={isModalOpen}
+                  onClose={() => setIsModalOpen(false)}
+                  shareLink={`${FrontendURL}${generatedLink}`}
+                />
+              </div>
+            )}
 
             {photoId && (
               <div className="profile-image-container">
@@ -182,6 +209,17 @@ const MakeBirthdayWishForm = () => {
                 {FrontendURL}
                 {generatedLink}
               </Link>
+
+              <button
+                onClick={handleCopy}
+                className={`copy-btn ${copied ? 'copied' : ''}`}
+              >
+                {copied ? (
+                  <Check className="icon copied-icon" />
+                ) : (
+                  <Copy className="icon" />
+                )}
+              </button>
             </div>
           )}
         </div>
