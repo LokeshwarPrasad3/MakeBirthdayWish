@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import confetti from 'canvas-confetti';
 import { useBirthday } from '../context/birthday/BirthdayContext';
 import { getMonthName } from '../utils/utilities';
@@ -57,6 +57,15 @@ const BirthdayCelebration = () => {
     intervalRef.current = intervalId; // Store interval ID in ref
   };
 
+  const [isVisible, setIsVisible] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 7000); 
+
+    return () => clearTimeout(timer); // Cleanup on unmount
+  }, []);
+
   return (
     <div className="birthday-content-container">
       <div className="birthday-content">
@@ -77,9 +86,11 @@ const BirthdayCelebration = () => {
           <p className="wish-text">{message}</p>
         </div>
       </div>
-      <Link to="/" className="close-btn create-new-button">
-        <FaPlus className="icon-plus" /> Create New Wish
-      </Link>
+      {isVisible && (
+        <Link to="/" className="close-btn create-new-button">
+          <FaPlus className="icon-plus" /> Create New Wish
+        </Link>
+      )}
     </div>
   );
 };
