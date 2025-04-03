@@ -18,7 +18,29 @@
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
   padding-top: 6rem;
 }
-
+.red-heart {
+  position: absolute;
+    top: 15px;
+    right: 15px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    width: fit-content;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 10px;
+    gap: 4px;
+  background: linear-gradient(to right, #c85ed8, #a855f7);
+}
+.red-heart .icon-heart{
+  color: red;
+}
 .birthday-form-wrapper {
   width: 100%;
   max-width: 500px;

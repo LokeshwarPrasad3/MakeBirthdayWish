@@ -7,6 +7,7 @@ import { useMutation } from '@tanstack/react-query';
 import { makeBirthdayWish } from '../services/user.services';
 import { Copy, Check } from 'lucide-react';
 import ShareModal from './Admin/ShareModal';
+import { IoMdHeart } from "react-icons/io";
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
@@ -225,6 +226,9 @@ const MakeBirthdayWishForm = () => {
           )}
         </div>
       </div>
+      <a target="_blank" href="https://github.com/LokeshwarPrasad3/" className="red-heart">
+        Made by Dev<IoMdHeart className='icon-heart' /> 
+      </a>
     </div>
   );
 };
