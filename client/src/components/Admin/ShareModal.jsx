@@ -26,10 +26,7 @@ const ShareModal = ({ shareLink }) => {
 
   return (
     <>
-      <a
-        className="submit-btn"
-        onClick={() => setIsOpen(true)}
-      >
+      <a className="submit-btn" onClick={() => setIsOpen(true)}>
         Share
       </a>
       {isOpen && (

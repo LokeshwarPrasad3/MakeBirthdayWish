@@ -1,11 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 const SpiralAnimation = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -24,7 +24,7 @@ const SpiralAnimation = () => {
       let hue = (angle * 10) % 360;
       ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
       ctx.lineWidth = lineWidth;
-      ctx.lineCap = "round";
+      ctx.lineCap = 'round';
 
       ctx.lineTo(x, y);
       ctx.stroke();
@@ -43,7 +43,7 @@ const SpiralAnimation = () => {
   return (
     <canvas
       ref={canvasRef}
-      style={{ position: "absolute", top: 0, left: 0, backgroundColor: "#000" }}
+      style={{ position: 'absolute', top: 0, left: 0, backgroundColor: '#000' }}
     ></canvas>
   );
 };

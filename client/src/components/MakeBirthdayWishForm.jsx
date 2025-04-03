@@ -120,7 +120,14 @@ const MakeBirthdayWishForm = () => {
     <div className="birthday-form-contents-container">
       <div className="birthday-form-container">
         <div className="birthday-form-wrapper">
-          <h2>Create Birthday Celebration</h2>
+          <div className="headings_">
+            {photoId && (
+              <div className="profile-image-container">
+                <img src={photoId} alt="Profile" />
+              </div>
+            )}
+            <h2>Create Birthday Celebration</h2>
+          </div>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name">Birthday Star's Name</label>
@@ -179,7 +186,7 @@ const MakeBirthdayWishForm = () => {
             </div>
 
             {!generatedLink ? (
-              <button type="submit" className="submit-btn">
+              <button disabled={isPending} type="submit" className="submit-btn">
                 {isPending ? 'Generating...' : 'Generate Birthday Page'}
               </button>
             ) : (
@@ -192,12 +199,6 @@ const MakeBirthdayWishForm = () => {
                   onClose={() => setIsModalOpen(false)}
                   shareLink={`${FrontendURL}${generatedLink}`}
                 />
-              </div>
-            )}
-
-            {photoId && (
-              <div className="profile-image-container">
-                <img src={photoId} alt="Profile" />
               </div>
             )}
           </form>

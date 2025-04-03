@@ -23,9 +23,7 @@ function App() {
           <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </Router>
-      <Toaster
-        position="top-center"
-      />
+      <Toaster position="top-center" />
     </>
   );
 }

@@ -1,5 +1,10 @@
 import { Router } from 'express';
-import { deleteAllUsers, featchUserDetails, getAllUsers, makeBirthdayWish } from '../controllers/user.controllers.js';
+import {
+  deleteAllUsers,
+  featchUserDetails,
+  getAllUsers,
+  makeBirthdayWish,
+} from '../controllers/user.controllers.js';
 const router = Router();
 
 router.route('/make-birthday-wish').post(makeBirthdayWish);

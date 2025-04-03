@@ -6,7 +6,7 @@ import { generateUniqueBirthdayId } from '../utils/utilities.js';
 
 export const makeBirthdayWish = asyncHandler(async (req, res) => {
   const { name, avatar, dob, message } = req.body;
-  console.log("message is ", message);
+  console.log('message is ', message);
   // dob in the format of DD-MM-YYYY
   if (!name || name.length <= 5 || !avatar || !dob || !message) {
     throw new ApiError(400, 'All fields are required, and name must be longer than 5 characters');
@@ -59,4 +59,3 @@ export const deleteAllUsers = asyncHandler(async (req, res) => {
   }
   return res.status(200).json(new ApiResponse(200, users, 'Users deleted successfully'));
 });
-

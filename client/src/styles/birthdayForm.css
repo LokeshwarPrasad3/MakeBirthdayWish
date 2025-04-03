@@ -1,8 +1,8 @@
-#root{
+#root {
   width: 100%;
   height: 100%;
 }
-.birthday-form-contents-container{
+.birthday-form-contents-container {
   max-height: 100vh;
   height: 100%;
   width: 100%;
@@ -15,12 +15,8 @@
   align-items: center;
   padding: 20px;
   background: #1a1a2e; /* Dark theme background */
-  background: linear-gradient(
-    135deg,
-    #1a1a2e 0%,
-    #16213e 50%,
-    #0f3460 100%
-  );
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  padding-top: 6rem;
 }
 
 .birthday-form-wrapper {
@@ -37,15 +33,26 @@
 }
 
 @keyframes borderGradient {
-  0% { border-color: #e94560; }
-  25% { border-color: #ff6b6b; }
-  50% { border-color: #e94560; }
-  75% { border-color: #ff6b6b; }
-  100% { border-color: #e94560; }
+  0% {
+    border-color: #e94560;
+  }
+  25% {
+    border-color: #ff6b6b;
+  }
+  50% {
+    border-color: #e94560;
+  }
+  75% {
+    border-color: #ff6b6b;
+  }
+  100% {
+    border-color: #e94560;
+  }
 }
 
 /* Update text colors to be more visible on dark background */
-h2, label {
+h2,
+label {
   color: #e94560;
 }
 
@@ -56,6 +63,12 @@ input {
 
 .submit-btn {
   background: linear-gradient(45deg, #e94560, #ff6b6b);
+}
+button.submit-btn:disabled {
+  background-color: gray;
+  color: white;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .generated-link {
@@ -114,7 +127,6 @@ textarea {
   color: white;
   font-size: 1rem;
   transition: all 0.3s ease;
-
 }
 
 textarea::placeholder {
@@ -127,7 +139,7 @@ textarea:focus {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-input[type="file"] {
+input[type='file'] {
   padding: 0.5rem;
   background: rgba(255, 255, 255, 0.2);
   cursor: pointer;
@@ -183,15 +195,15 @@ input[type="file"] {
     font-size: 1.5rem;
   }
 
-  input, .submit-btn {
+  input,
+  .submit-btn {
     padding: 0.7rem;
   }
 }
-.form-error-text{
+.form-error-text {
   color: rgb(235, 72, 97);
   font-size: 14px;
 }
-
 
 .profile-image-container {
   position: absolute;
@@ -199,8 +211,8 @@ input[type="file"] {
   left: 50%;
   transform: translateX(-50%);
   width: 150px;
-  height: 150px; 
-  border-radius: 50%; 
+  height: 150px;
+  border-radius: 50%;
   overflow: hidden;
   border: 2px solid rgb(235, 73, 97);
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -209,7 +221,7 @@ input[type="file"] {
   .profile-image-container {
     top: -80px;
     width: 100px;
-    height: 100px; 
+    height: 100px;
   }
 }
 
@@ -245,12 +257,12 @@ input[type="file"] {
 .copied-icon {
   color: white;
 }
-.container_button_generated{
+.container_button_generated {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
 }
-.container_button_generated a{
+.container_button_generated a {
   text-align: center;
 }
