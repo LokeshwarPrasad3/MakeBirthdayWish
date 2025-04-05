@@ -11,6 +11,7 @@ import BirthdayCelebration from './components/BirthdayCelebration';
 import MakeBirthdayWishForm from './components/MakeBirthdayWishForm';
 import { Toaster } from 'react-hot-toast';
 import AdminPage from './pages/admin/AdminPage';
+import ErrorPage from './components/ErrorPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MakeBirthdayWishForm />} />
           <Route path="/:birthdayId" element={<CandleInteraction />} />
+          <Route path="/error" element={<ErrorPage />} />
           <Route path="/birthday" element={<BirthdayCelebration />} />
           <Route path="/admin" element={<AdminPage />} />
         </Routes>

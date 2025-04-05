@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { showBirthdayWish } from '../services/user.services';
 import { useBirthday } from '../context/birthday/BirthdayContext';
+import CrazyLoading from "../components/Admin/CrazyLoader"
 
 const CandleInteraction = () => {
   const [isBlown, setIsBlown] = useState(false);
@@ -17,11 +18,6 @@ const CandleInteraction = () => {
   const navigate = useNavigate();
 
   const { handleSetBirthdayBoyDetails } = useBirthday();
-
-  useEffect(() => {
-    initAudio();
-    ambientMovement();
-  }, []);
 
   const initAudio = async () => {
     try {
@@ -109,16 +105,30 @@ const CandleInteraction = () => {
   });
 
   useEffect(() => {
-    if (!data?.data?.success) return;
-    const birthdayData = data.data.data;
-    const { avatar, name, dob, message } = birthdayData;
-    handleSetBirthdayBoyDetails({
-      name,
-      profilePicture: avatar,
-      birthdayDate: dob,
-      message,
-    });
-  }, [data]);
+    if (error) {
+      console.log('Redirecting due to query error:', error.message);
+      navigate('/error');
+      return;
+    }
+
+    if (data?.data?.success) {
+      const birthdayData = data.data.data;
+      const { avatar, name, dob, message } = birthdayData;
+      handleSetBirthdayBoyDetails({
+        name,
+        profilePicture: avatar,
+        birthdayDate: dob,
+        message,
+      });
+
+      initAudio();
+      ambientMovement();
+    }
+  }, [data, error, navigate]);
+
+  if (isLoading) {
+    return <CrazyLoading message={"Almost there... ⏳ Just a second! 😊"} />
+  }
 
   return (
     <div className="candle-container">
@@ -143,18 +153,6 @@ const CandleInteraction = () => {
       <p className="instruction">
         🎤 Allow microphone access and blow to interact
       </p>
-      {/* <div className="sensitivity-control">
-        <label htmlFor="sensitivity">Microphone Sensitivity:</label>
-        <input
-          type="range"
-          id="sensitivity"
-          min="0.05"
-          max="0.3"
-          step="0.01"
-          value={blowThreshold}
-          onChange={(e) => setBlowThreshold(parseFloat(e.target.value))}
-        />
-      </div> */}
     </div>
   );
 };
