@@ -17,6 +17,11 @@ app.use(
   })
 );
 
+// Welcome route
+app.get('/', (req, res) => {
+  res.json({ message: 'Welcome to MakeAWish API' });
+});
+
 app.use('/api/users', UserRoutes);
 
 export { app };
