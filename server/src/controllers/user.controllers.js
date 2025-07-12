@@ -5,7 +5,7 @@ import asyncHandler from '../utils/asyncHandler.js';
 import { generateUniqueBirthdayId } from '../utils/utilities.js';
 
 export const makeBirthdayWish = asyncHandler(async (req, res) => {
-  const { name, avatar, dob, message } = req.body;
+  const { name, avatar, dob, message, music } = req.body;
   console.log('message is ', message);
   // dob in the format of DD-MM-YYYY
   if (!name || name.length <= 5 || !avatar || !dob || !message) {
@@ -19,6 +19,7 @@ export const makeBirthdayWish = asyncHandler(async (req, res) => {
     birthdayId,
     dob,
     message,
+    music
   });
   if (!createUser) {
     throw new ApiError(500, 'User not created');

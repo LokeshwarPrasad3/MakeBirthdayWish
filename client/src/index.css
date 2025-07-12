@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+
+@layer components {
+  .birthday_form {
+    @apply flex flex-col gap-1 sm:gap-3;
+  }
+  .form_group {
+    @apply flex flex-col;
+  }
+  .form_label {
+    @apply text-[15px] text-white mb-1;
+  }
+  .formik_error_text {
+    @apply text-sm text-red-400;
+  }
+}

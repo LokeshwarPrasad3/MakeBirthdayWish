@@ -1,18 +1,43 @@
 import { useEffect, useRef, useState } from 'react';
 import confetti from 'canvas-confetti';
 import { useBirthday } from '../context/birthday/BirthdayContext';
-import { getMonthName } from '../utils/utilities';
-import { Link, useLocation } from 'react-router-dom';
+import { getMonthName, musicsList } from '../utils/utilities';
+import { Link, useLocation, useNavigate } from 'react-router-dom'; // <-- add useNavigate
 import { FaPlus } from 'react-icons/fa';
 
 const BirthdayCelebration = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const intervalRef = useRef(null);
-  const { name, profilePicture, message, birthdayDate } = useBirthday();
+  const { name, profilePicture, message, birthdayDate, musicId } =
+    useBirthday();
+
+  // Redirect if any required data is missing
+  useEffect(() => {
+    if (!name || !profilePicture || !message || !birthdayDate || !musicId) {
+      navigate('/');
+    }
+  }, [name, profilePicture, message, birthdayDate, musicId, navigate]);
+
+  // music is music id so find that music from the list .url is need to paly
+  const startMusic = () => {
+    if (musicId) {
+      // get music url from array musicList then .url
+      const music = musicsList.find((m) => m.id === musicId);
+      const audio = new Audio(music.url);
+      audio.loop = true;
+      audio.play().catch((error) => {
+        console.error('Error playing music:', error);
+      });
+    } else {
+      console.warn('No music selected for birthday celebration.');
+    }
+  };
 
   useEffect(() => {
     if (location.pathname === '/birthday') {
       triggerConfetti();
+      startMusic();
     }
 
     // Cleanup: Clear confetti interval when leaving the route
@@ -61,7 +86,7 @@ const BirthdayCelebration = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 7000); 
+    }, 7000);
 
     return () => clearTimeout(timer); // Cleanup on unmount
   }, []);

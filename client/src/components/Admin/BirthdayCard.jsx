@@ -9,7 +9,7 @@ const BirthdayCard = ({
   createdAt,
 }) => {
   return (
-    <div className="birthday-card">
+    <div className="birthday-card flex flex-col items-center justify-center">
       <img src={avatar} alt={name} className="avatar" />
       <h3 className="name">{name}</h3>
       <p className="birthday-id">ID: {birthdayId}</p>
