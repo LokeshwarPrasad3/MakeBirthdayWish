@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const ErrorPage = () => {
   return (
-    <div className="error_page_container h-[100dvh]">
+    <div className="error_page_container !h-[100dvh]">
       <h1>🎂 Birthday not found. The link might be broken. 🔗❌</h1>
       <section className="error-container">
         <span className="four">

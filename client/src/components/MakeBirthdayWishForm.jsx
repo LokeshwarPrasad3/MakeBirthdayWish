@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useMutation } from '@tanstack/react-query';
 import { makeBirthdayWish } from '../services/user.services';
-import { Copy, Check, Music } from 'lucide-react';
+import { Copy, Check, Music, RefreshCcw } from 'lucide-react';
 import ShareModal from './Admin/ShareModal';
 import { IoMdHeart } from 'react-icons/io';
 import ChooseMusicsModal from './modal/ChooseMusicsModal';
@@ -267,7 +267,8 @@ const MakeBirthdayWishForm = () => {
               </button>
             ) : (
               <div className="container_button_generated">
-                <a href="" className="submit-btn">
+                  <a href="" className="hover:bg-gradient-to-bl bg-gradient-to-r from-purple-500 to-pink-500 flex-shrink-0 text-sm cursor-pointer text-white px-5 py-1 rounded-lg ml-2">
+                    <RefreshCcw className='inline h-4 w-4 mr-1.5' />
                   Refresh
                 </a>
                 <ShareModal

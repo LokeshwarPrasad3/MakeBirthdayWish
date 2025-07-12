@@ -128,10 +128,10 @@ const CandleInteraction = () => {
   }, [data, error, navigate]);
 
   // Bypass blow page in non-production environments
-  if (import.meta.env.REACT_APP_NODE_ENV !== 'production') {
-    navigate('/birthday');
-    return null;
-  }
+  // if (import.meta.env.REACT_APP_NODE_ENV !== 'production') {
+  //   navigate('/birthday');
+  //   return null;
+  // }
 
   if (isLoading) {
     return <CrazyLoading message={'Almost there... ⏳ Just a second! 😊'} />;

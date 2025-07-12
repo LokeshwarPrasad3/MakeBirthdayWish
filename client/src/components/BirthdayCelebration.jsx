@@ -104,8 +104,8 @@ const BirthdayCelebration = () => {
             <span className="heart">❤</span>
           </div>
 
-          <h1 className="birthday-text">Happy Birthday!</h1>
-          <h2 className="name-text">{name}</h2>
+          <h1 className="birthday-text font-bold">Happy Birthday!</h1>
+          <h2 className="name-text font-bold">{name}</h2>
         </div>
         <div className="message-section">
           <p className="wish-text">{message}</p>

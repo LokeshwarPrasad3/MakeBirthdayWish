@@ -1,3 +1,4 @@
+import { Share2 } from 'lucide-react';
 import React, { useState } from 'react';
 import {
   FaTimes,
@@ -26,7 +27,8 @@ const ShareModal = ({ shareLink }) => {
 
   return (
     <>
-      <a className="submit-btn" onClick={() => setIsOpen(true)}>
+      <a className="hover:bg-gradient-to-bl bg-gradient-to-r from-purple-500 to-blue-500 flex-shrink-0 text-sm cursor-pointer text-white px-4 py-1 rounded-lg ml-1" onClick={() => setIsOpen(true)}>
+        <Share2 className='inline h-4 w-4 mr-1.5' />
         Share
       </a>
       {isOpen && (
