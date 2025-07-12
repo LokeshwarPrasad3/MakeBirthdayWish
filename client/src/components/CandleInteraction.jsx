@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { showBirthdayWish } from '../services/user.services';
 import { useBirthday } from '../context/birthday/BirthdayContext';
-import CrazyLoading from "../components/Admin/CrazyLoader"
+import CrazyLoading from '../components/Admin/CrazyLoader';
 
 const CandleInteraction = () => {
   const [isBlown, setIsBlown] = useState(false);
@@ -113,12 +113,13 @@ const CandleInteraction = () => {
 
     if (data?.data?.success) {
       const birthdayData = data.data.data;
-      const { avatar, name, dob, message } = birthdayData;
+      const { avatar, name, dob, message, music } = birthdayData;
       handleSetBirthdayBoyDetails({
         name,
         profilePicture: avatar,
         birthdayDate: dob,
         message,
+        musicId: music,
       });
 
       initAudio();
@@ -126,8 +127,14 @@ const CandleInteraction = () => {
     }
   }, [data, error, navigate]);
 
+  // Bypass blow page in non-production environments
+  if (import.meta.env.REACT_APP_NODE_ENV !== 'production') {
+    navigate('/birthday');
+    return null;
+  }
+
   if (isLoading) {
-    return <CrazyLoading message={"Almost there... ⏳ Just a second! 😊"} />
+    return <CrazyLoading message={'Almost there... ⏳ Just a second! 😊'} />;
   }
 
   return (

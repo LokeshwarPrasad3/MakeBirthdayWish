@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useMutation } from '@tanstack/react-query';
 import { makeBirthdayWish } from '../services/user.services';
-import { Copy, Check } from 'lucide-react';
+import { Copy, Check, Music } from 'lucide-react';
 import ShareModal from './Admin/ShareModal';
-import { IoMdHeart } from "react-icons/io";
+import { IoMdHeart } from 'react-icons/io';
+import ChooseMusicsModal from './modal/ChooseMusicsModal';
+import ModalPortal from './layouts/ModalPortal';
+import '../styles/birthdayForm.css';
+import { musicsList as musics } from '../utils/utilities';
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
@@ -98,11 +102,13 @@ const MakeBirthdayWishForm = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       // console.log(values);
+      const selectedMusicId = selectedMusic ? selectedMusic.id : 'BS00';
       MakeBirthdayWishMutate({
         name: values.name,
         avatar: values.photoId,
         dob: values.birthDate,
         message: values.message,
+        music: selectedMusicId,
       });
     },
   });
@@ -117,6 +123,9 @@ const MakeBirthdayWishForm = () => {
     }, 2000);
   };
 
+  const [showModal, setShowModal] = useState(false);
+  const [selectedMusic, setSelectedMusic] = useState(null);
+
   return (
     <div className="birthday-form-contents-container">
       <div className="birthday-form-container">
@@ -127,11 +136,15 @@ const MakeBirthdayWishForm = () => {
                 <img src={photoId} alt="Profile" />
               </div>
             )}
-            <h2>Create Birthday Celebration</h2>
+            <p className="text-xl sm:text-3xl text-center font-bold mb-4 sm:mb-5 bg-gradient-to-r from-purple-300 via-pink-200 to-yellow-200 bg-clip-text text-transparent">
+              Create Birthday Celebration
+            </p>
           </div>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="name">Birthday Star's Name</label>
+          <form className="birthday_form" onSubmit={handleSubmit}>
+            <div className="form_group">
+              <label className="form_label" htmlFor="name">
+                Birthday Star's Name
+              </label>
               <input
                 type="text"
                 id="name"
@@ -139,55 +152,117 @@ const MakeBirthdayWishForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 placeholder="Enter name"
+                className="bg-[#ffffff33] text-white rounded-lg p-2 outline-none border-none focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all duration-200"
               />
               {errors.name && touched.name && (
-                <span className="form-error-text">{errors.name}</span>
+                <span className="formik_error_text">{errors.name}</span>
               )}
             </div>
 
-            <div className="form-group">
-              <label>Message</label>
+            <div className="form_group">
+              <label className="form_label">Message</label>
               <textarea
                 id="message"
                 value={values.message}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 placeholder="Enter your message"
+                className="bg-[#ffffff33] text-white rounded-lg p-2 outline-none border-none focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all duration-200"
               ></textarea>
               {errors.message && touched.message && (
-                <span className="form-error-text">{errors.message}</span>
+                <span className="formik_error_text">{errors.message}</span>
               )}
             </div>
 
-            <div className="form-group">
-              <label htmlFor="photo">Upload Photo</label>
-              <input
-                type="file"
-                id="photo"
-                accept="image/*"
-                onChange={(e) => handleFileChange(e)}
-              />
+            <div className="form_group">
+              <label htmlFor="photo" className="form_label">
+                Upload Photo
+              </label>
+
+              <div className="relative w-full">
+                <input
+                  type="file"
+                  id="photo"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  className="block w-full text-sm text-white file:mr-4 file:py-2 file:px-4
+        file:rounded-none file:border-0
+        file:text-sm file:font-semibold
+        file:bg-gradient-to-r file:from-purple-500 file:to-pink-500 file:text-white
+        
+        bg-[#ffffff33] rounded-lg outline-none focus:ring-2 focus:ring-white/30 transition-all duration-200 cursor-pointer"
+                />
+              </div>
+
               {errors.photoId && touched.photoId && (
-                <span className="form-error-text">{errors.photoId}</span>
+                <p clas className="formik_error_text">
+                  {errors.photoId}
+                </p>
               )}
             </div>
 
-            <div className="form-group">
-              <label htmlFor="birthDate">Birth Date</label>
+            <div className="form_group">
+              <label className="form_label" htmlFor="photo">
+                Add Music
+              </label>
+              <div className="music_selection_container bg-[#ffffff33] flex justify-between items-center p-2 rounded-xl">
+                {selectedMusic ? (
+                  <div className="flex items-center gap-2 text-white flex-1 min-w-0">
+                    <div className="p-1.5 w-fit rounded-lg bg-gradient-to-r from-purple-500 to-pink-500">
+                      <Music className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="truncate flex-1 bg-gradient-to-r from-purple-200 to-pink-200 font-bold bg-clip-text text-transparent">
+                      {selectedMusic.name}
+                    </span>
+                  </div>
+                ) : (
+                  <p
+                    onClick={() => setShowModal(true)}
+                    className="text-white cursor-pointer flex items-center gap-2 flex-1"
+                  >
+                    <span className="pl-2">Select Music 🎵</span>
+                  </p>
+                )}
+                <button
+                  onClick={() => setShowModal(true)}
+                  className="hover:bg-gradient-to-bl bg-gradient-to-r from-purple-500 to-pink-500 flex-shrink-0 text-sm cursor-pointer text-white px-4 py-1 rounded-lg ml-2"
+                >
+                  Choose
+                </button>
+                <ModalPortal>
+                  <ChooseMusicsModal
+                    musics={musics}
+                    isOpen={showModal}
+                    onClose={() => setShowModal(false)}
+                    onSet={(music) => setSelectedMusic(music)}
+                  />
+                </ModalPortal>
+              </div>
+            </div>
+
+            <div className="form_group">
+              <label className="form_label" htmlFor="birthDate">
+                Birth Date
+              </label>
               <input
                 type="date"
                 id="birthDate"
                 value={values.birthDate}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                className="bg-[#ffffff33] w-full text-white rounded-lg p-2 outline-none border-none focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all duration-200"
               />
               {errors.birthDate && touched.birthDate && (
-                <span className="form-error-text">{errors.birthDate}</span>
+                <span className="formik_error_text">{errors.birthDate}</span>
               )}
             </div>
 
             {!generatedLink ? (
-              <button disabled={isPending} type="submit" className="submit-btn">
+              <button
+                disabled={isPending}
+                type="submit"
+                className="submit-btn bg-gradient-to-r mt-4 from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-2 rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+              >
                 {isPending ? 'Generating...' : 'Generate Birthday Page'}
               </button>
             ) : (
@@ -226,8 +301,13 @@ const MakeBirthdayWishForm = () => {
           )}
         </div>
       </div>
-      <a target="_blank" href="https://github.com/LokeshwarPrasad3/" className="red-heart">
-        Made by Dev<IoMdHeart className='icon-heart' /> 
+      <a
+        target="_blank"
+        href="https://github.com/LokeshwarPrasad3/"
+        className="red-heart"
+      >
+        Made by Dev
+        <IoMdHeart className="icon-heart" />
       </a>
     </div>
   );

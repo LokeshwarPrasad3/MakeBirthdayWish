@@ -1,7 +1,3 @@
-#root {
-  width: 100%;
-  height: 100%;
-}
 .birthday-form-contents-container {
   max-height: 100vh;
   height: 100%;
@@ -20,25 +16,25 @@
 }
 .red-heart {
   position: absolute;
-    top: 15px;
-    right: 15px;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    width: fit-content;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 6px 10px;
-    gap: 4px;
+  top: 15px;
+  right: 15px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  width: fit-content;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 10px;
+  gap: 4px;
   background: linear-gradient(to right, #c85ed8, #a855f7);
 }
-.red-heart .icon-heart{
+.red-heart .icon-heart {
   color: red;
 }
 .birthday-form-wrapper {
@@ -73,25 +69,6 @@
 }
 
 /* Update text colors to be more visible on dark background */
-h2,
-label {
-  color: #e94560;
-}
-
-input {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-}
-
-.submit-btn {
-  background: linear-gradient(45deg, #e94560, #ff6b6b);
-}
-button.submit-btn:disabled {
-  background-color: gray;
-  color: white;
-  opacity: 0.6;
-  cursor: not-allowed;
-}
 
 .generated-link {
   background: rgba(255, 255, 255, 0.1);
@@ -101,88 +78,12 @@ button.submit-btn:disabled {
 .generated-link a {
   color: #e94560;
 }
-h2 {
+.birthday-form-contents-container h2 {
   color: white;
   text-align: center;
   margin-bottom: 2rem;
   font-size: 2rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-label {
-  display: block;
-  color: white;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-}
-
-input {
-  width: 100%;
-  padding: 0.8rem;
-  border: none;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-input:focus {
-  outline: none;
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-}
-textarea {
-  width: 100%;
-  padding: 0.7rem;
-  border: none;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-textarea::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-textarea:focus {
-  outline: none;
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-input[type='file'] {
-  padding: 0.5rem;
-  background: rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-}
-
-.submit-btn {
-  width: 100%;
-  padding: 1rem;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-  color: white;
-  font-size: 1.1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .generated-link {
@@ -211,15 +112,6 @@ input[type='file'] {
 @media (max-width: 768px) {
   .birthday-form-wrapper {
     padding: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  input,
-  .submit-btn {
-    padding: 0.7rem;
   }
 }
 .form-error-text {

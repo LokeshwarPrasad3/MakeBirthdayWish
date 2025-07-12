@@ -174,7 +174,7 @@
     transform: scale(0.8);
     gap: 10px !important;
   }
-  .error_page_container{
+  .error_page_container {
     gap: 0 !important;
   }
 }
@@ -203,13 +203,6 @@
 body .error_page_container {
   background-color: #fdfaf5;
   margin-bottom: 50px;
-}
-.error_page_container html,
-.error_page_container button,
-.error_page_container input,
-.error_page_container select,
-.error_page_container textarea {
-  color: #bbb;
 }
 .error_page_container {
   height: 100%;

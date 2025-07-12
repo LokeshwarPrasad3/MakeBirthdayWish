@@ -8,6 +8,7 @@ const BirthdayContextProvider = ({ children }) => {
   const [profilePicture, setProfilePicture] = useState('');
   const [message, setMessage] = useState('');
   const [birthdayDate, setBirthdayDate] = useState('');
+  const [musicId, setMusicId] = useState('');
 
   const handleSetBirthdayBoyDetails = ({
     name,
@@ -15,6 +16,7 @@ const BirthdayContextProvider = ({ children }) => {
     profilePicture,
     message,
     birthdayDate,
+    musicId,
   }) => {
     // console.log("messages", message)
     setName(name);
@@ -22,6 +24,7 @@ const BirthdayContextProvider = ({ children }) => {
     setMessage(message);
     setProfilePicture(profilePicture);
     setBirthdayDate(birthdayDate);
+    setMusicId(musicId);
   };
 
   return (
@@ -32,6 +35,7 @@ const BirthdayContextProvider = ({ children }) => {
         profilePicture,
         birthdayDate,
         message,
+        musicId,
         handleSetBirthdayBoyDetails,
       }}
     >

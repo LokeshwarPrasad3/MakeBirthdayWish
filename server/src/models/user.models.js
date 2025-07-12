@@ -22,6 +22,11 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    music: {
+      type: String,
+      required: false,
+      default: 'BS00',
+    },
   },
   {
     timestamps: true,
